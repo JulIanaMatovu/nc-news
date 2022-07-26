@@ -1,4 +1,5 @@
 export default function ArticleCard({ article }) {
+  //will be used for individual articles ticket
   let image_url = "";
 
   function findCategory() {

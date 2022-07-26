@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
-import { fetchArticles } from "../API/api";
-import { Link } from "react-router-dom";
+import { fetchArticles, fetchByTopic } from "../API/api";
+import { Link, useParams } from "react-router-dom";
 
-export default function Home() {
+export default function Articles() {
   const [articleData, setArticleData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
- 
+  const { topic } = useParams();
+
   useEffect(() => {
-    fetchArticles().then((data) => {
-      setArticleData(data);
-      setIsLoading(false);
-    });
+    if (topic !== undefined) {
+      fetchByTopic(topic).then((data) => {
+        setArticleData(data);
+        setIsLoading(false);
+      });
+    } else {
+      fetchArticles().then((data) => {
+        setArticleData(data);
+        setIsLoading(false);
+      });
+    }
   }, []);
 
   return (

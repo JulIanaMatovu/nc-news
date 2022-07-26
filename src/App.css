@@ -13,16 +13,42 @@
   color: white;
 }
 
-img{
+img {
   width: 250px;
 }
 
-h6{
+h6 {
   text-align: center;
 }
 
 .App-link {
   color: #61dafb;
 }
+section {
+  border: solid green;
+  margin-right: 9px;
+}
 
+#cookingTopicBox {
+  width: 120px;
+  float: right;
+  margin-right: 17px;
+  margin-top: 590px;
+  height: 80px;
+  line-height: 80px;
+}
+#footballTopicBox {
+  width: 120px;
+  float: right;
+  margin-top: 590px;
+  height: 80px;
+  line-height: 80px;
+}
 
+#codingTopicBox {
+  width: 120px;
+  float: right;
+  margin-top: 590px;
+  height: 80px;
+  line-height: 80px;
+}
