@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchArticles, fetchByTopic } from "../API/api";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, Outlet } from "react-router-dom";
 
 export default function Articles() {
   const [articleData, setArticleData] = useState([]);
@@ -33,6 +33,7 @@ export default function Articles() {
         <div className="articleList">
           {articleData.map((article) => (
             <div className="articleName" key={article.article_id}>
+              
               <Link to={`/articles/${article.article_id}`}>
                 <h6>{article.title}</h6>
               </Link>
@@ -40,6 +41,9 @@ export default function Articles() {
               <p>Votes: {article.votes}</p>
               <p>Date: {article.created_at}</p>
               <hr></hr>
+              
+              <Outlet/>
+              
             </div>
           ))}
         </div>

@@ -1,13 +1,25 @@
-export default function ArticleCard({ article }) {
-  //will be used for individual articles ticket
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { fetchSingleArticle } from "../API/api";
+import { Link } from "react-router-dom";
+
+export default function ArticleCard() {
+  const [article, setArticle] = useState({});
+  const { article_id } = useParams();
   let image_url = "";
+
+  useEffect(() => {
+    fetchSingleArticle(article_id).then((data) => {
+      setArticle(data);
+    });
+  }, [article_id]);
 
   function findCategory() {
     switch (article.topic) {
       case "coding":
         image_url =
-          "https://cdn.columbiauniversitybootcamp.com/wp-content/uploads/sites/108/2020/10/CDG_blog_post_image_02.jpg"
-          break;
+          "https://cdn.columbiauniversitybootcamp.com/wp-content/uploads/sites/108/2020/10/CDG_blog_post_image_02.jpg";
+        break;
 
       case "cooking":
         image_url = "https://img.rasset.ie/001c1b9f-600.jpg";
@@ -26,11 +38,31 @@ export default function ArticleCard({ article }) {
   }
 
   return (
-    <section>
+    <><section>
       <div className="articleName">
-        {findCategory()}
-        
+        <p>{article.title}</p>
       </div>
     </section>
+    <hr></hr>
+    <img src={findCategory()} alt="" />
+    <hr></hr>
+    <article>{article.body}</article>
+    <p>Author: {article.author}</p>
+    <p>Date of publication: {article.created_at}</p>
+    {article.topic !== undefined ? (<Link to={`/cooking/articles`}>Topic: {article.topic[0].toUpperCase() + article.topic.slice(1)}</Link>) :(
+      <Link to={`/cooking/articles`}>Topic: {article.topic}</Link>
+    ) } 
+    <p>Votes: {article.votes}</p> <button>👍</button>
+    <hr></hr>
+    <strong><p>Comments:{article.comment_count}</p></strong>
+    <section className="listedComments">
+      <div >
+        <p>View list of comments here:</p>
+      </div>
+    </section>
+    <button>💬 Add a Comment</button>
+    
+    </>
+    
   );
 }

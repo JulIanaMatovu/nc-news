@@ -6,19 +6,19 @@ export default function Home() {
       <div className="topicBoxes">
         <section id="cookingTopicBox">
           <strong>
-            <Link to={`/articles/cooking`}>Cooking</Link>
+            <Link to={`/cooking/articles`}>Cooking</Link>
           </strong>
         </section>
 
         <section id="footballTopicBox">
           <strong>
-            <Link to={`/articles/football`}>Football</Link>
+            <Link to={`/football/articles`}>Football</Link>
           </strong>
         </section>
 
         <section id="codingTopicBox">
           <strong>
-            <Link to={`/articles/coding`}>Coding</Link>
+            <Link to={`/coding/articles`}>Coding</Link>
           </strong>
         </section>
       </div>

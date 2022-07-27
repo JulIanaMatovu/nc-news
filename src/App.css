@@ -78,3 +78,16 @@ section {
   margin-top: 6px;
   border-radius: 40%;
 }
+
+.listedComments{
+  margin-bottom: 20px;
+}
+
+button{
+  margin-bottom: 13px;
+}
+
+article {
+  margin: 8px;
+  padding: 3px;
+}

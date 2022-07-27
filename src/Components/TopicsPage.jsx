@@ -7,19 +7,19 @@ export default function Topics(){
       <div className="topics">
         <section id="cookingTopicChoice">
           <strong>
-            <Link to={`/articles/cooking`}>Cooking</Link>
+            <Link to={`/cooking/articles`}>Cooking</Link>
           </strong>
         </section>
 
         <section id="footballTopicChoice">
           <strong>
-            <Link to={`/articles/football`}>Football</Link>
+            <Link to={`/football/articles`}>Football</Link>
           </strong>
         </section>
 
         <section id="codingTopicChoice">
           <strong>
-            <Link to={`/articles/coding`}>Coding</Link>
+            <Link to={`/coding/articles`}>Coding</Link>
           </strong>
         </section>
       </div>
