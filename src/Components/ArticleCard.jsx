@@ -28,6 +28,7 @@ export default function ArticleCard({ article }) {
   return (
     <section>
       <div className="articleName">
+        {findCategory()}
         
       </div>
     </section>

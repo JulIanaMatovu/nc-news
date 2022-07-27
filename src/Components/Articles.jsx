@@ -19,7 +19,7 @@ export default function Articles() {
         setIsLoading(false);
       });
     }
-  }, []);
+  }, [topic]);
 
   return (
     <div>
