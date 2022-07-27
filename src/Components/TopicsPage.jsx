@@ -1,27 +1,28 @@
 import { Link } from "react-router-dom";
-export default function Home() {
-  return (
-    <>
-      <h1>NC News</h1>
-      <div className="topicBoxes">
-        <section id="cookingTopicBox">
+
+export default function Topics(){
+    return (
+        <>
+        <h1>Topics</h1>
+      <div className="topics">
+        <section id="cookingTopicChoice">
           <strong>
             <Link to={`/articles/cooking`}>Cooking</Link>
           </strong>
         </section>
 
-        <section id="footballTopicBox">
+        <section id="footballTopicChoice">
           <strong>
             <Link to={`/articles/football`}>Football</Link>
           </strong>
         </section>
 
-        <section id="codingTopicBox">
+        <section id="codingTopicChoice">
           <strong>
             <Link to={`/articles/coding`}>Coding</Link>
           </strong>
         </section>
       </div>
     </>
-  );
+    )
 }

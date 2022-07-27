@@ -1,4 +1,5 @@
 export default function ArticleCard({ article }) {
+  //will be used for individual articles ticket
   let image_url = "";
 
   function findCategory() {
@@ -27,6 +28,7 @@ export default function ArticleCard({ article }) {
   return (
     <section>
       <div className="articleName">
+        {findCategory()}
         
       </div>
     </section>
