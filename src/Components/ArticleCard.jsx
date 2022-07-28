@@ -1,18 +1,32 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { fetchSingleArticle } from "../API/api";
+import { fetchSingleArticle, updateVotes } from "../API/api";
 import { Link } from "react-router-dom";
 
 export default function ArticleCard() {
   const [article, setArticle] = useState({});
+  const [votes, setVotes] = useState(1);
   const { article_id } = useParams();
+  const [numClicks, setNumClicks] = useState(false);
   let image_url = "";
 
   useEffect(() => {
     fetchSingleArticle(article_id).then((data) => {
       setArticle(data);
+      setVotes(data.votes);
     });
   }, [article_id]);
+
+  useEffect(()=>{
+    if(numClicks === 1){
+      updateVotes(article_id).then((articleWithUpdatedVotes) =>{
+        setVotes(articleWithUpdatedVotes.votes)
+    })
+    }else if(numClicks > 1){
+      alert("You have already voted!");
+    }
+    
+  },[numClicks, article_id])
 
   function findCategory() {
     switch (article.topic) {
@@ -38,7 +52,8 @@ export default function ArticleCard() {
   }
 
   return (
-    <><section>
+    <>
+    <section>
       <div className="articleName">
         <p>{article.title}</p>
       </div>
@@ -49,10 +64,14 @@ export default function ArticleCard() {
     <article>{article.body}</article>
     <p>Author: {article.author}</p>
     <p>Date of publication: {article.created_at}</p>
-    {article.topic !== undefined ? (<Link to={`/cooking/articles`}>Topic: {article.topic[0].toUpperCase() + article.topic.slice(1)}</Link>) :(
+    {article.topic !== undefined ? (<Link to={`/cooking/articles`}>Topic: {article.topic[0].toUpperCase() + article.topic.slice(1)}</Link>)
+     :(
       <Link to={`/cooking/articles`}>Topic: {article.topic}</Link>
-    ) } 
-    <p>Votes: {article.votes}</p> <button>👍</button>
+    ) }
+    <p>Votes: {votes}</p> 
+    <button onClick={()=>
+      setNumClicks(numClicks + 1)
+    }>Add Vote 👍</button>
     <hr></hr>
     <strong><p>Comments:{article.comment_count}</p></strong>
     <section className="listedComments">
@@ -61,8 +80,11 @@ export default function ArticleCard() {
       </div>
     </section>
     <button>💬 Add a Comment</button>
-    
     </>
+      
+    
+    
+    
     
   );
 }
