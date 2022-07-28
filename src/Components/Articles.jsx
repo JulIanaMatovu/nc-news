@@ -11,6 +11,7 @@ export default function Articles() {
     if (topic !== undefined) {
       fetchByTopic(topic).then((data) => {
         setArticleData(data);
+
         setIsLoading(false);
       });
     } else {
@@ -19,7 +20,8 @@ export default function Articles() {
         setIsLoading(false);
       });
     }
-  }, [topic]);
+  }, [topic,articleData]);
+
 
   return (
     <div>
@@ -33,18 +35,17 @@ export default function Articles() {
         <div className="articleList">
           {articleData.map((article) => (
             <div className="articleName" key={article.article_id}>
-              
               <Link to={`/articles/${article.article_id}`}>
                 <h6>{article.title}</h6>
               </Link>
               <p>Author: {article.author}</p>
               <p>Votes: {article.votes}</p>
               <p>Date: {article.created_at}</p>
-              <hr></hr>
+              <hr/>
               
               <Outlet/>
-              
             </div>
+            
           ))}
         </div>
       )}
