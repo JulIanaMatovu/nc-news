@@ -6,11 +6,14 @@ import { Link } from "react-router-dom";
 export default function ArticleCard() {
   const [article, setArticle] = useState({});
   const { article_id } = useParams();
+  const [isErr, setIsErr] = useState(false);
   let image_url = "";
 
   useEffect(() => {
     fetchSingleArticle(article_id).then((data) => {
       setArticle(data);
+    }).catch((err)=>{
+      setIsErr(true);
     });
   }, [article_id]);
 
@@ -38,7 +41,14 @@ export default function ArticleCard() {
   }
 
   return (
-    <><section>
+    <>
+    {isErr ? (
+        <div className="errorArticle">
+          <h2>Error: Article not found</h2>
+        </div>
+      ) : (
+        <div className="articleList">
+          <section>
       <div className="articleName">
         <p>{article.title}</p>
       </div>
@@ -60,7 +70,11 @@ export default function ArticleCard() {
         <p>View list of comments here:</p>
       </div>
     </section>
-    <button>💬 Add a Comment</button>
+        <button>💬 Add a Comment</button>
+        </div>
+        
+      )}
+    
     
     </>
     
