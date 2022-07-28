@@ -1,17 +1,25 @@
 import { useEffect, useState } from "react";
-import { fetchArticles } from "../API/api";
-import { Link } from "react-router-dom";
+import { fetchArticles, fetchByTopic } from "../API/api";
+import { Link, useParams, Outlet } from "react-router-dom";
 
-export default function Home() {
+export default function Articles() {
   const [articleData, setArticleData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
- 
+  const { topic } = useParams();
+
   useEffect(() => {
-    fetchArticles().then((data) => {
-      setArticleData(data);
-      setIsLoading(false);
-    });
-  }, []);
+    if (topic !== undefined) {
+      fetchByTopic(topic).then((data) => {
+        setArticleData(data);
+        setIsLoading(false);
+      });
+    } else {
+      fetchArticles().then((data) => {
+        setArticleData(data);
+        setIsLoading(false);
+      });
+    }
+  }, [topic]);
 
   return (
     <div>
@@ -25,6 +33,7 @@ export default function Home() {
         <div className="articleList">
           {articleData.map((article) => (
             <div className="articleName" key={article.article_id}>
+              
               <Link to={`/articles/${article.article_id}`}>
                 <h6>{article.title}</h6>
               </Link>
@@ -32,6 +41,9 @@ export default function Home() {
               <p>Votes: {article.votes}</p>
               <p>Date: {article.created_at}</p>
               <hr></hr>
+              
+              <Outlet/>
+              
             </div>
           ))}
         </div>
