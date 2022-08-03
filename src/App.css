@@ -13,16 +13,81 @@
   color: white;
 }
 
-img{
+img {
   width: 250px;
 }
 
-h6{
+h6 {
   text-align: center;
 }
 
 .App-link {
   color: #61dafb;
 }
+section {
+  border: solid green;
+  margin-right: 9px;
+}
 
+#cookingTopicBox {
+  width: 64px;
+  float: right;
+  margin-right: 5rem;
+  margin-top: 690px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 10%;
+}
+#footballTopicBox {
+  width: 64px;
+  float: right;
+  margin-top: 690px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 10%;
+}
 
+#codingTopicBox {
+  width: 64px;
+  float: right;
+  margin-top: 690px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 10%;
+}
+
+#cookingTopicChoice{
+  height: 50px;
+  line-height: 50px;
+  margin-left: 10px;
+  border-radius: 40%;
+}
+
+#codingTopicChoice{
+  height: 50px;
+  line-height: 50px;
+  margin-left: 10px;
+  margin-top: 6px;
+  border-radius: 40%;
+}
+
+#footballTopicChoice{
+  height: 50px;
+  line-height: 50px;
+  margin-left: 10px;
+  margin-top: 6px;
+  border-radius: 40%;
+}
+
+.listedComments{
+  margin-bottom: 20px;
+}
+
+button{
+  margin-bottom: 13px;
+}
+
+article {
+  margin: 8px;
+  padding: 3px;
+}
